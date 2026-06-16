@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>🍽️ Питание и калории</h2>
+
+<form method="POST">
+  <input type="number" name="age" placeholder="Возраст" value="39" required>
+  <input type="number" step="0.1" name="weight" placeholder="Вес (кг)" required>
+  <input type="number" step="0.1" name="height" placeholder="Рост (см)" required>
+  <select name="activity">
+    <option value="1.2">Минимальная активность</option>
+    <option value="1.375">1–3 тренировки</option>
+    <option value="1.55" selected>3–5 тренировок</option>
+    <option value="1.725">Ежедневно</option>
+  </select>
+  <button type="submit">Рассчитать</button>
+</form>
+
+{% if result %}
+<h3>Результат</h3>
+<table>
+  <tr><td>Норма калорий (TDEE)</td><td>{{ result.tdee }} ккал</td></tr>
+  <tr><td>Для похудения</td><td>{{ result.deficit }} ккал</td></tr>
+  <tr><td>Белки</td><td>{{ result.protein }} г</td></tr>
+  <tr><td>Жиры</td><td>{{ result.fat }} г</td></tr>
+  <tr><td>Углеводы</td><td>{{ result.carbs }} г</td></tr>
+</table>
+{% endif %}
+
+<h3>🍳 Примеры приёмов пищи</h3>
+<ul>
+  <li><strong>Завтрак:</strong> Овсянка + 2 яйца + банан — 450 ккал</li>
+  <li><strong>Обед:</strong> Курица 150г + гречка + овощи — 550 ккал</li>
+  <li><strong>Ужин:</strong> Рыба на пару + капуста — 350 ккал</li>
+</ul>
+{% endblock %}

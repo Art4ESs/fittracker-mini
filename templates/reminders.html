@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>🔔 Напоминания</h2>
+
+<form method="POST">
+  <input type="date" name="date" required>
+  <input type="text" name="title" placeholder="Что нужно сделать?" required>
+  <select name="priority">
+    <option value="Низкий">Низкий</option>
+    <option value="Средний" selected>Средний</option>
+    <option value="Высокий">Высокий</option>
+  </select>
+  <label><input type="checkbox" name="completed"> Выполнено</label>
+  <button type="submit">Добавить</button>
+</form>
+
+<h3>Список задач</h3>
+<table>
+  <tr>
+    <th>Дата</th>
+    <th>Задача</th>
+    <th>Приоритет</th>
+    <th>✅</th>
+  </tr>
+  {% for row in entries %}
+  <tr style="background: {% if row[3] %}#e8f5e8{% elif row[2] == 'Высокий' %}#ffebee{% endif %};">
+    <td>{{ row[1] }}</td>
+    <td>{{ row[2] }}</td>
+    <td>{{ row[3] }}</td>
+    <td>{% if row[4] %}✅{% else %}⬜{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

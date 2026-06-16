@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>🏋️ Тренировки</h2>
+
+<form method="POST">
+  <input type="date" name="date" required>
+  <select name="workout_type" required>
+    <option value="Ноги + пресс">Ноги + пресс</option>
+    <option value="Грудь + трицепс">Грудь + трицепс</option>
+    <option value="Спина + бицепс">Спина + бицепс</option>
+    <option value="Функциональный">Функциональный</option>
+    <option value="Отдых">Отдых</option>
+  </select>
+  <input type="text" name="exercise" placeholder="Упражнение" required>
+  <input type="text" name="sets_reps" placeholder="4 × 10" required>
+  <input type="number" step="0.1" name="weight" placeholder="Вес (кг)">
+  <label><input type="checkbox" name="completed"> Выполнено</label>
+  <button type="submit">Добавить</button>
+</form>
+
+<h3>История</h3>
+<table>
+  <tr>
+    <th>Дата</th>
+    <th>Тип</th>
+    <th>Упражнение</th>
+    <th>Подходы</th>
+    <th>Вес</th>
+    <th>✅</th>
+  </tr>
+  {% for row in entries %}
+  <tr>
+    <td>{{ row[1] }}</td>
+    <td>{{ row[2] }}</td>
+    <td>{{ row[3] }}</td>
+    <td>{{ row[4] }}</td>
+    <td>{{ row[5] }}</td>
+    <td>{% if row[6] %}✅{% else %}⬜{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

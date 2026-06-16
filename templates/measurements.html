@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>📏 Замеры тела</h2>
+
+<form method="POST">
+  <input type="date" name="date" required>
+  <input type="number" step="0.1" name="weight" placeholder="Вес (кг)" required>
+  <input type="number" step="0.1" name="waist" placeholder="Талия (см)">
+  <input type="number" step="0.1" name="chest" placeholder="Грудь (см)">
+  <input type="number" step="0.1" name="biceps" placeholder="Бицепс (см)">
+  <input type="number" step="0.1" name="hips" placeholder="Бедро (см)">
+  <input type="number" step="0.1" name="neck" placeholder="Шея (см)">
+  <button type="submit">Сохранить</button>
+</form>
+
+<h3>История замеров</h3>
+<table>
+  <tr>
+    <th>Дата</th>
+    <th>Вес</th>
+    <th>Талия</th>
+    <th>Грудь</th>
+    <th>Бицепс</th>
+    <th>Бедро</th>
+    <th>Шея</th>
+  </tr>
+  {% for row in entries %}
+  <tr>
+    <td>{{ row[0] }}</td>
+    <td>{{ row[1] }}</td>
+    <td>{{ row[2] }}</td>
+    <td>{{ row[3] }}</td>
+    <td>{{ row[4] }}</td>
+    <td>{{ row[5] }}</td>
+    <td>{{ row[6] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
